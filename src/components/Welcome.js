@@ -22,7 +22,7 @@ import "../custom.css"
           </div> */}
 
           <div class="grid grid-cols-2 gap-10">
-            <Link to="/daftar" className="items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
+            <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
               style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "cadetblue"}}
             >
               <img className="w-auto"
@@ -33,7 +33,7 @@ import "../custom.css"
 
               
             </Link>
-            <Link to="/survey" className="items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
+            <Link to="/survey" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
               style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "cornflowerblue"}}
             >
               <img className="w-auto"
