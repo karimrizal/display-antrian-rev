@@ -1,7 +1,9 @@
 import { ArrowLeftIcon, BackspaceIcon, CameraIcon } from '@heroicons/react/outline';
 import React from 'react'
+import { useRef } from 'react';
 import { useState } from 'react';
 import { useAlert } from 'react-alert';
+import Countdown from 'react-countdown';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import camera from '../components/camera'
@@ -31,7 +33,6 @@ const onGrabFrameButtonClick = () => {
 }
 
 const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
-    setIsLoading(true);
     imageCapture.takePhoto()
         .then((blob) => {
             let imageBitmap = createImageBitmap(blob);
@@ -58,6 +59,8 @@ const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
                 })
                 .catch((error) => {
                     console.error('Error:', error);
+                    alert.error(`Terjadi error, silahkan melakukan antrian ulang ${error}`);
+                    setTimeout(() => { navigate("/"); }, 3000);
                 });
 
             // const canvas = document.querySelector('#takePhotoCanvas');
@@ -91,24 +94,29 @@ const drawCanvas = (canvas, img) => {
         x, y, img.width * ratio, img.height * ratio);
 }
 
-// document.querySelector('video').addEventListener('play', () => {
-//   document.querySelector('#grabFrameButton').disabled = false;
-//   document.querySelector('#takePhotoButton').disabled = false;
-// });
-
 
 function Daftar() {
     onGetUserMediaButtonClick();
     const navigate = useNavigate();
     const alert = useAlert();
     const [isLoading, setIsLoading] = useState(false);
+    const cdref = useRef(null);
+    const [showCd, setShowCd] = useState(false);
+
 
 
 
     return (
         <div style={{ display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", height: "100vh" }}>
             <div id="results" style={{ border: "1px dashed #a7a7a7", width: "700px", borderRadius: 10, display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
-                <h1>Perhatikan Kamera</h1>
+                {/* <h1>Perhatikan Kamera</h1> */}
+                <Countdown 
+                    date={Date.now() + 3000}
+                    renderer={props => <div style={{display: showCd?"flex":"none", flexDirection: "column", justifyContent:"center", alignItems: "center"}} className="font-medium text-4xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><h1>Perhatikan Kamera</h1><p>{props.seconds}</p> </div>} 
+                    ref={cdref}
+                    autoStart={false}
+                    onComplete={()=>{console.log("Complete cd"); onTakePhotoButtonClick(alert, navigate, setIsLoading); setShowCd(false)}}
+                />,
                 <div>
                     <video id="vid" autoPlay style={{ backgroundColor: "black" }} />
                     {/* <button id="getUserMediaButton" onClick={onGetUserMediaButtonClick}  >Get User Media</button> */}
@@ -124,7 +132,7 @@ function Daftar() {
                             <ArrowLeftIcon className="text-white h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" />Batal Antri
                         </button>
                     </Link>
-                    <button id="takePhotoButton" onClick={() => { onTakePhotoButtonClick(alert, navigate, setIsLoading); }}
+                    <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true) }}
                         disabled={isLoading}
                         className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst">
                         <div className="flex items-center justify-center" style={{ marginRight: 10, display: isLoading?"flex":"none" }} >
