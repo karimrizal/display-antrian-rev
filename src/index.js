@@ -15,6 +15,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import Countdown from 'react-countdown';
 
 
 
@@ -139,6 +140,10 @@ const AlertDialog = ({ close, message, options }) => {
           ))}
         <Button onClick={close} color="primary">
           {options.closeCopy || "Okay"}
+          <Countdown 
+            date={Date.now() + options.timeout}
+            renderer={props => <div>({props.seconds})</div>} 
+          />
         </Button>
       </DialogActions>
     </Dialog>
