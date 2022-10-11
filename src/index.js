@@ -139,10 +139,10 @@ const AlertDialog = ({ close, message, options }) => {
             </Button>
           ))}
         <Button onClick={close} color="primary">
-          {options.closeCopy || "Okay"}
+          {options.closeCopy || "Ok"}
           <Countdown 
             date={Date.now() + options.timeout}
-            renderer={props => <div>({props.seconds})</div>} 
+            renderer={props => <div>&nbsp;({props.seconds})</div>} 
           />
         </Button>
       </DialogActions>
