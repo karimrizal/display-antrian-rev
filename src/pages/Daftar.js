@@ -53,7 +53,10 @@ const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
                 .then((response) => response.text())
                 .then((result) => {
                     console.log('Success:', result);
-                    alert.success(`${result} berhasil terdaftar, silahkan menunggu panggilan`);
+                    alert.success(<div style={{display: "flex"}}>
+                        <img style={{width:200, marginRight: 10}} src={"https://sultradata.com/project/antrian-api/"+result.split(",")[1]} />
+                        <p><span style={{color: "red"}}>{result.split(",")[0]}</span> berhasil terdaftar, silahkan menunggu panggilan</p>
+                    </div>);
                     setTimeout(() => { navigate("/"); }, 3000);
 
                 })
@@ -115,7 +118,12 @@ function Daftar() {
                     renderer={props => <div style={{display: showCd?"flex":"none", flexDirection: "column", justifyContent:"center", alignItems: "center"}} className="font-medium text-4xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"><h1>Perhatikan Kamera</h1><p>{props.seconds}</p> </div>} 
                     ref={cdref}
                     autoStart={false}
-                    onComplete={()=>{console.log("Complete cd"); onTakePhotoButtonClick(alert, navigate, setIsLoading); setShowCd(false)}}
+                    onComplete={()=>{
+                        console.log("Complete cd");
+                        // console.log("wow");
+                        // alert.show("WOW"); 
+                        onTakePhotoButtonClick(alert, navigate, setIsLoading); setShowCd(false);
+                    }}
                 />,
                 <div>
                     <video id="vid" autoPlay style={{ backgroundColor: "black" }} />
