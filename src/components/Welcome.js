@@ -8,7 +8,7 @@ import "../custom.css"
 
   export default function Welcome() {
     return (
-        <section className="bg-white">
+        <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
         <div className="max-w-2xl mx-auto py-12 px-4 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8">
 
           <h2 className="text-3xl font-bold text-center tracking-tight text-gray-900" style={{marginBottom: 20}}>Selamat Datang di PST BPS Provinsi Sulawesi Tenggara 👋</h2>
@@ -22,8 +22,8 @@ import "../custom.css"
           </div> */}
 
           <div class="grid grid-cols-2 gap-10">
-            <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
-              style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "cadetblue"}}
+            <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-black bg-pst hover:bg-blue hover:text-white custombutton"
+              style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "#ffc500"}}
             >
               <img className="w-auto"
                 src={line_up}
@@ -34,7 +34,7 @@ import "../custom.css"
               
             </Link>
             <Link to="/survey" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
-              style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "cornflowerblue"}}
+              style={{display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", backgroundColor: "#ff5715"}}
             >
               <img className="w-auto"
                 src={surveyor}

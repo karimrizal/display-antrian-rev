@@ -23,7 +23,7 @@ export default function Navbar() {
 
           <div className='columns-1 px-2 text-right sm:text-right md:text-right lg:text-right'>
           <a
-            href="#"
+            href="https://sultradata.com/project/antrian-backend "
             className="w-full flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-pst bg-white hover:bg-yellow hover:text-pst"
             >
             <CogIcon className="text-pst h-6 w-6" aria-hidden="true"/>

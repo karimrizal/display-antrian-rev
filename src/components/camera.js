@@ -25,7 +25,7 @@ const camera = function () {
         context: null,
         canvas: null,
     
-        startCamera: function (w = 680, h = 480) {
+        startCamera: function (w = 768, h = 512) {
             if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 width = w;
                 height = h;

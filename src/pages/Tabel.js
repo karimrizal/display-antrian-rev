@@ -101,7 +101,8 @@ function Table() {
     //   }
 
     const status = [0, "Menunggu Antrian", "Sedang Dilayani", "Selesai Dilayani"];
-    const status_warna = ["white", "#E5E7EB", "yellow", "#BBF7D0"];
+    const status_warna = ["white", "white", "yellow", "#BBF7D0"];
+    const status_border = ["blue", "blue", "black", "#079439"];
 
     if(tesSuara){
         textToSpeach("Audio Test");
@@ -116,34 +117,35 @@ function Table() {
 
 
     return (
+        <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div>
-                    <h2 className="text-2xl font-semibold leading-tight">Daftar Antrian PST BPS Provinsi Sulawesi Tenggara</h2>
-                    <h2 className="text-2xl font-semibold leading-tight">{yourDate.toLocaleDateString("id-ID", options)}</h2>
+                    <h2 className="text-3xl text-blue font-bold leading-tight mb-1">Daftar Antrian PST BPS Provinsi Sulawesi Tenggara</h2>
+                    <div className="flex text-lg rounded-xl text-gray-600 mb-3"><h2 className="text-2xl font-semibold leading-tight">🗓️ {yourDate.toLocaleDateString("id-ID", options)}</h2></div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div
-                        className="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
+                        className="inline-block min-w-full shadow-2xl rounded-lg overflow-hidden"
                     >
                         <Reorder.Group values={cryptoData} onReorder={setCryptoData}>
                             <table className="min-w-full leading-normal">
                                 <thead>
                                     <tr>
                                         <th
-                                            className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                            className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                         >
-                                            Antrian
+                                            😊 Antrian
                                         </th>
                                         <th
-                                            className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                            className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                         >
-                                            Waktu Pendaftaran
+                                            ⏳ Waktu Pendaftaran
                                         </th>
                                         <th
-                                            className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider"
+                                            className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                         >
-                                            Status Antrian
+                                            💡 Status Antrian
                                         </th>
                                     </tr>
                                 </thead>
@@ -151,36 +153,36 @@ function Table() {
                                     {cryptoData.map(cryptocurrency =>
                                         <Reorder.Item as='tr' key={cryptocurrency.price_change_percentage_24h} value={cryptocurrency.price_change_percentage_24h} className="shake" >
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
-                                                <div className="flex">
+                                                <div className="flex space-x-2">
                                                     <div className="flex-shrink-0" style={{ width: 150 }}>
                                                         <img
                                                             //   className="w-full h-full rounded-full"
-                                                            className="w-full h-full"
+                                                            className="rounded-full w-24 h-24"
                                                             src={"https://sultradata.com/project/antrian-api/" + cryptocurrency.foto_pengunjung_path}
                                                             alt=""
                                                         />
                                                     </div>
                                                     <div className="ml-3 flex flex-col justify-center content-center">
-                                                        <p className="text-gray-900 whitespace-no-wrap">
+                                                        <p className="text-black font-medium text-2xl whitespace-no-wrap">
                                                             {cryptocurrency.nama_pengunjung}
                                                         </p>
                                                         {/* <p className="text-gray-600 whitespace-no-wrap">{cryptocurrency.symbol}</p> */}
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                            <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                                 {/* <p className="text-gray-900 whitespace-no-wrap">{cryptocurrency.waktu_kunjungan}</p> */}
                                                 <span
-                                                    className="px-4 py-2 rounded-full text-gray-500 bg-gray-200 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease">
+                                                    className="px-4 py-2 rounded-full text-black bg-white font-semibold text-lg flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease">
                                                     {cryptocurrency.waktu_kunjungan}
                                                 </span>
                                                 {/* <p className="text-gray-600 whitespace-no-wrap">USD</p> */}
                                             </td>
-                                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                            <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                                 {/* <p className="text-gray-600 whitespace-no-wrap">{status[cryptocurrency.id_status]}</p> */}
                                                 <span
-                                                    className="px-4 py-2 rounded-full text-gray-500 bg-gray-200 font-semibold text-sm flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
-                                                    style={{ backgroundColor: status_warna[cryptocurrency.id_status] }}
+                                                    className="px-4 py-2 rounded-full border-2 border-black text-black bg-gray-200 font-semibold text-2xl flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
+                                                    style={{ backgroundColor: status_warna[cryptocurrency.id_status], borderColor: status_border[cryptocurrency.id_status], }}
                                                 >
                                                     {status[cryptocurrency.id_status]}
                                                 </span>
@@ -195,6 +197,7 @@ function Table() {
                 </div>
             </div>
         </div>
+        </section>
     );
 }
 
