@@ -145,6 +145,11 @@ function Table() {
                                         <th
                                             className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                         >
+                                            🔢 No Meja
+                                        </th>
+                                        <th
+                                            className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
+                                        >
                                             💡 Status Antrian
                                         </th>
                                     </tr>
@@ -175,6 +180,16 @@ function Table() {
                                                 <span
                                                     className="px-4 py-2 rounded-full text-black bg-white font-semibold text-lg flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease">
                                                     {cryptocurrency.waktu_kunjungan}
+                                                </span>
+                                                {/* <p className="text-gray-600 whitespace-no-wrap">USD</p> */}
+                                            </td>
+                                            <td className="px-5 py-5 border-b border-gray-200 text-sm">
+                                                {/* <p className="text-gray-900 whitespace-no-wrap">{cryptocurrency.waktu_kunjungan}</p> */}
+                                                <span
+                                                    className="px-4 py-2 rounded-full text-black bg-white font-semibold text-lg flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
+                                                    style={{display: cryptocurrency.meja==0?"none":"flex"}}
+                                                >
+                                                    {cryptocurrency.meja}
                                                 </span>
                                                 {/* <p className="text-gray-600 whitespace-no-wrap">USD</p> */}
                                             </td>
