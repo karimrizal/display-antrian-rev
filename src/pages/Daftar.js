@@ -110,6 +110,7 @@ function Daftar() {
 
 
     return (
+        <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
         <div style={{ display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", height: "100vh" }}>
             <div id="results" style={{ border: "1px dashed #a7a7a7", width: "700px", borderRadius: 10, display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                 {/* <h1>Perhatikan Kamera</h1> */}
@@ -126,7 +127,7 @@ function Daftar() {
                     }}
                 />,
                 <div>
-                    <video id="vid" autoPlay style={{ backgroundColor: "black" }} />
+                    <video  id="vid" autoPlay style={{ backgroundColor: "black"}} />
                     {/* <button id="getUserMediaButton" onClick={onGetUserMediaButtonClick}  >Get User Media</button> */}
                 </div>
                 {/* <div>
@@ -137,7 +138,7 @@ function Daftar() {
                     <canvas id="takePhotoCanvas" style={{ display: "none" }} />
                     <Link to="/" >
                         <button disabled={isLoading} className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst" >
-                            <ArrowLeftIcon className="text-white h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" />Batal Antri
+                            <ArrowLeftIcon className="text-white h-6 w-6 hover:bg-yellow hover:text-pst" style={{ marginRight: 10 }} aria-hidden="true" />Batal Antri
                         </button>
                     </Link>
                     <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true) }}
@@ -146,7 +147,7 @@ function Daftar() {
                         <div className="flex items-center justify-center" style={{ marginRight: 10, display: isLoading?"flex":"none" }} >
                             <div className="w-5 h-5 border-b-2 border-gray-900 rounded-full animate-spin"></div>
                         </div>
-                        <CameraIcon className="text-white h-6 w-6" style={{ marginRight: 10, display: isLoading? "none":"flex" }} aria-hidden="true" />Ambil Foto dan Antrian
+                        <CameraIcon className="text-white h-6 w-6 hover:bg-yellow hover:text-pst" style={{ marginRight: 10, display: isLoading? "none":"flex" }} aria-hidden="true" />Ambil Foto dan Antrian
                     </button>
 
 
@@ -156,6 +157,7 @@ function Daftar() {
 
 
         </div>
+    </section>
     )
 }
 
