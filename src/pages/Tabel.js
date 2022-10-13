@@ -192,7 +192,7 @@ function Table() {
                                             <td className="px-5 py-5 border-b border-gray-200 text-sm">
                                                 {/* <p className="text-gray-900 whitespace-no-wrap">{cryptocurrency.waktu_kunjungan}</p> */}
                                                 <span
-                                                    className="px-4 py-2 rounded-full text-black font-semibold text-lg flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
+                                                    className="text-2xl px-4 py-2 rounded-full text-black font-semibold text-lg flex align-center w-max cursor-pointer active:bg-gray-300 transition duration-300 ease"
                                                     style={{display: cryptocurrency.meja==0?"none":"flex", margin: "auto"}}
                                                 >
                                                     {cryptocurrency.meja}
