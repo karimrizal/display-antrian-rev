@@ -48,7 +48,7 @@ function Table() {
         setCryptoData(sortedData);
         let panggilan = sortedData.filter(data => data.is_sudah_dipanggil == 0&&data.waktu_panggilan!=null);
         if(panggilan.length>0){
-            console.log(`Ada ${panggilan.length} panggilan antrian`);
+            console.log(`Ada ${panggilan.length} panggilan antrean`);
             let firstTableRow = document.getElementsByClassName("shake")[0];
             firstTableRow.classList.add("shaker");
 
@@ -81,7 +81,7 @@ function Table() {
 
 
         }else{
-            console.log("tidak ada panggilan antrian");
+            console.log("tidak ada panggilan antrean");
 
         }
     }
@@ -100,7 +100,7 @@ function Table() {
     //     window.speechSynthesis.speak(hi);
     //   }
 
-    const status = [0, "Menunggu Antrian", "Sedang Dilayani", "Selesai Dilayani"];
+    const status = [0, "Menunggu Antrean", "Sedang Dilayani", "Selesai Dilayani"];
     const status_warna = ["white", "white", "yellow", "#BBF7D0"];
     const status_border = ["blue", "blue", "black", "#079439"];
 
@@ -121,7 +121,7 @@ function Table() {
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div>
-                    <h2 className="text-3xl text-blue font-bold leading-tight mb-1">Daftar Antrian PST BPS Provinsi Sulawesi Tenggara</h2>
+                    <h2 className="text-3xl text-blue font-bold leading-tight mb-1">Daftar Antrean PST BPS Provinsi Sulawesi Tenggara</h2>
                     <div className="flex text-lg rounded-xl text-gray-600 mb-3"><h2 className="text-2xl font-semibold leading-tight">🗓️ {yourDate.toLocaleDateString("id-ID", options)}</h2></div>
                 </div>
                 <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -136,7 +136,7 @@ function Table() {
                                             className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                             style={{textAlign: "center"}}
                                         >
-                                            😊 Antrian
+                                            😊 Antrean
                                         </th>
                                         <th
                                             className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
@@ -154,7 +154,7 @@ function Table() {
                                             className="px-5 py-3 border-b-2 border-gray-200 bg-blue text-left text-xl font-semibold text-white uppercase tracking-wider"
                                             style={{textAlign: "center"}}
                                         >
-                                            💡 Status Antrian
+                                            💡 Status Antrean
                                         </th>
                                     </tr>
                                 </thead>
