@@ -40,7 +40,7 @@ function Table() {
     }, [cryptoData])
 
     const fetchCryptoData = async () => {
-        const data = await fetch(url_api_view + `/records/queue?order=waktu_panggilan,desc&order=id&filter=waktu_kunjungan,sw,${date}`);
+        const data = await fetch(url_api_view + `/records/queue?order=waktu_panggilan,desc&order=id_status&filter=waktu_kunjungan,sw,${date}`);
         const apiResponse = await data.json();
         // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
         const sortedData = apiResponse.records;
