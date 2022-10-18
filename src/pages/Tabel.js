@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useState, useEffect } from 'react';
 import { Reorder } from 'framer-motion'
-import { url_api_view } from '../components/constant';
+import { url_api_view, url_image } from '../components/constant';
 import "../custom.css"
 
 // reorder
@@ -167,7 +167,7 @@ function Table() {
                                                         <img
                                                             //   className="w-full h-full rounded-full"
                                                             className="rounded-full w-24 h-24"
-                                                            src={"https://sultradata.com/project/antrian-api/" + cryptocurrency.foto_pengunjung_path}
+                                                            src={url_image + cryptocurrency.foto_pengunjung_path}
                                                             alt=""
                                                         />
                                                     </div>

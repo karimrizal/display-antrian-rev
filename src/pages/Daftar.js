@@ -7,7 +7,7 @@ import Countdown from 'react-countdown';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import camera from '../components/camera'
-import { url_camera_sound, url_upload } from '../components/constant';
+import { url_camera_sound, url_image, url_upload } from '../components/constant';
 import "../custom.css"
 
 let imageCapture;
@@ -54,7 +54,7 @@ const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
                 .then((result) => {
                     console.log('Success:', result);
                     alert.success(<div style={{display: "flex"}}>
-                        <img style={{width:200, marginRight: 10}} src={"https://sultradata.com/project/antrian-api/"+result.split(",")[1]} />
+                        <img style={{width:200, marginRight: 10}} src={url_image+result.split(",")[1]} />
                         <p><span style={{color: "red"}}>{result.split(",")[0]}</span> berhasil terdaftar, silahkan menunggu panggilan</p>
                     </div>);
                     setTimeout(() => { navigate("/"); }, 3000);
