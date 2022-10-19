@@ -19,7 +19,8 @@ function App() {
           {/* <Route path="/daftar">
             <Daftar />
           </Route> */}
-          <Route path="/" element={<><Navbar/><Welcome/></>} />
+          {/* <Route path="/" element={<><Navbar/><Welcome/></>} /> */}
+          <Route path="/" element={<Welcome/>} />
           <Route path="/daftar" element={<Daftar/>} />
           <Route path="/tabel" element={<Tabel/>} />
           <Route path="/survey" element={<Survey/>} />
