@@ -65,7 +65,7 @@ export default function Survey() {
 
     return (
        
-        <div className="min-h-screen  bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ... flex flex-col justify-center py-10">
+        <div className="full-height-min-10 bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 flex flex-col justify-center py-10">
             {/* <div className="relative sm:max-w-4xl sm:mx-auto"> */}
             <Link to="/" style={{ position: "absolute", top: 10, left: 10, display: "flex" }} className="custombutton"><ArrowLeftIcon className="text-black h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" /> Back</Link>
             <div className="relative md:max-w-5xl md:mx-auto">

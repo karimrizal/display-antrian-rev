@@ -496,3 +496,8 @@ body .twitter svg {
   flex-direction: column;
   justify-content: space-between;
 }
+
+.full-height-min-10{
+  /* background-color: #60daaa; */
+  min-height: calc(100vh - 1px );
+}
