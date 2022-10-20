@@ -488,3 +488,11 @@ body .twitter svg {
   height: 32px;
   fill: #1da1f2;
 } */
+
+.full-remaining-height{
+  /* background-color: #60daaa; */
+  min-height: calc(100vh - 185px );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
