@@ -111,8 +111,9 @@ function Daftar() {
 
     return (
         <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
+            <Link to="/" style={{ position: "absolute", top: 10, left: 10, display: "flex" }} className="custombutton"><ArrowLeftIcon className="text-black h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" /> Back</Link>
         <div style={{ display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", height: "100vh" }}>
-            <div id="results" style={{ border: "1px dashed #a7a7a7", width: "700px", borderRadius: 10, display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
+            <div id="results" style={{ border: "1px dashed #a7a7a7", width: "80%", maxWidth: "1000px", borderRadius: 10, display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                 {/* <h1>Perhatikan Kamera</h1> */}
                 <Countdown 
                     date={Date.now() + 3000}
@@ -126,21 +127,28 @@ function Daftar() {
                         onTakePhotoButtonClick(alert, navigate, setIsLoading); setShowCd(false);
                     }}
                 />,
-                <div>
-                    <video  id="vid" autoPlay style={{ backgroundColor: "black"}} />
+                <div style={{width: "100%", display: "grid", gridTemplateColumns: "1fr"}}>
+                    <video  id="vid" autoPlay style={{ backgroundColor: "black", width: "100%", gridRowStart: 1, gridColumnStart: 1 }} />
                     {/* <button id="getUserMediaButton" onClick={onGetUserMediaButtonClick}  >Get User Media</button> */}
+                    <div style={{width: "100%", height: "100%", gridRowStart: 1, gridColumnStart: 1, display: "flex", justifyContent: "center", alignItems: "center"}} 
+                        // className="font-medium text-4xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <div style={{height: "95%", aspectRatio: "1", borderRadius: "100%", boxShadow: "0 0 100px 0px rgb(0 0 0 / 70%)"}}>
+                            {/* <h1>WxOW</h1>  */}
+                        </div>
+                    </div>
                 </div>
                 {/* <div>
                 <canvas id="grabFrameCanvas" />
                 <button id="grabFrameButton" onClick={onGrabFrameButtonClick}>Grab Frame</button>
             </div> */}
-                <div style={{ display: "flex", alignContent: "flex-end", justifyContent: "space-between", width: 370, alignSelf: "flex-end", marginRight: 30, marginTop: 10, marginBottom: 10 }} >
+                <div style={{ display: "flex", alignContent: "flex-end", justifyContent: "space-between", alignSelf: "center", marginTop: 10, marginBottom: 10 }} >
                     <canvas id="takePhotoCanvas" style={{ display: "none" }} />
-                    <Link to="/" >
+                    {/* <Link to="/" >
                         <button disabled={isLoading} className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst" >
                             <ArrowLeftIcon className="text-white h-6 w-6 hover:bg-yellow hover:text-pst" style={{ marginRight: 10 }} aria-hidden="true" />Batal Antri
                         </button>
-                    </Link>
+                    </Link> */}
                     <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true) }}
                         disabled={isLoading}
                         className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst">
