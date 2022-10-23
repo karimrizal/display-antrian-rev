@@ -113,6 +113,7 @@ function Daftar() {
         <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
             <Link to="/" style={{ position: "absolute", top: 10, left: 10, display: "flex" }} className="custombutton"><ArrowLeftIcon className="text-black h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" /> Back</Link>
         <div style={{ display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", height: "100vh" }}>
+            
             <div id="results" style={{ border: "1px dashed #a7a7a7", width: "80%", maxWidth: "1000px", borderRadius: 10, display: "flex", alignContent: "center", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
                 {/* <h1>Perhatikan Kamera</h1> */}
                 <Countdown 
@@ -135,6 +136,25 @@ function Daftar() {
                     >
                         <div style={{height: "95%", aspectRatio: "1", borderRadius: "100%", boxShadow: "0 0 100px 0px rgb(0 0 0 / 70%)"}}>
                             {/* <h1>WxOW</h1>  */}
+                        </div>
+                    </div>
+
+                    <div style={{width: "100%", height: "100%", gridRowStart: 1, gridColumnStart: 1}} 
+                        // className="font-medium text-4xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <div style={{height: "100%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", alignItems: "center"}}>
+                            {/* <h1>WxOW</h1>  */}
+                            <div class="arrow down">Down</div>
+                            <div style={{height: "100%", width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center"}}>
+                                <div style={{display: "flex", flexDirection: "column", justifyContent: "space-around", alignItems: "center", height: 200}}>
+                                    <div class="arrow left">Left</div>
+                                    <div class="arrow left">Left</div>
+                                    <div class="arrow left">Left</div>
+                                </div>
+                                <div class="arrow right">Right</div>
+
+                            </div>
+                            <div class="arrow up">Up</div>
                         </div>
                     </div>
                 </div>
