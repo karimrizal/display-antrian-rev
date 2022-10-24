@@ -117,7 +117,7 @@ function Table() {
 
 
     return (
-        <section className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
+        <section style={{height: "100vh"}} className=" bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 ...">
         <div className="container mx-auto px-4 sm:px-8">
             <div className="py-8">
                 <div>
