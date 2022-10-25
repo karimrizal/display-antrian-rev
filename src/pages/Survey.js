@@ -81,7 +81,7 @@ export default function Survey() {
         for (let index = 0; index < sortedData.length; index++) {
             const element = sortedData[index];
             let temp = {
-                value: element["niplama"],
+                value: element["id"],
                 label: element["nama"],
                 image : url_image_onedata+element["image_path"]
             }
@@ -155,6 +155,7 @@ export default function Survey() {
                         <div className="font-sans text-gray-700 space-y-2 sm:leading-7 text-center antialiased">
                             <h1 id="title" className="text-3xl font-semibold">Survey Kepuasan Pelayanan</h1>
                             <p id="description" className="text-lg">BPS Provinsi Sulawesi Tenggara</p>
+                            <Rating style={{display: "none"}} />
                             
                         </div>
                         {/* Form */}
