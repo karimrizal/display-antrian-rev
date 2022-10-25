@@ -31,7 +31,7 @@ export default function Welcome() {
         <div className="full-remaining-height">
           <div class="grid grid-col-1 gap-0 py-9">
             <div></div>
-            <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-black bg-pst hover:bg-blue hover:text-white/0 custombutton"
+            <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-black bg-pst hover:bg-blue hover:text-white custombutton"
               style={{ display: "flex", alignItems: "center", flexDirection: "column", padding: "30px", backgroundColor: "#ffc500", height: "100%", minHeight: "700px" }}
             >
               <img className="w-auto"
