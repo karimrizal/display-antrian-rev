@@ -41,6 +41,8 @@ export default function Survey() {
         'Great+',
     ];
 
+    const refSaran = useRef(null);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("handle submit");
@@ -58,7 +60,10 @@ export default function Survey() {
                 p8: p8,
                 p9: p9,
                 p10: p10,
+                saran: refSaran.current.value
             };
+
+            console.log("data", data);
 
             fetch(url_api_view + "/records/penilaian", {
                 method: 'POST', // or 'PUT'
@@ -101,6 +106,20 @@ export default function Survey() {
                             <div className="grid grid-cols-6 gap-4 pt-8">
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
+                                        Nama Pengunjung
+                                    </label>
+                                    <input type="text" style={{width: "100%", border: "1px solid black", padding:10}} />
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-6">
+                                    <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
+                                        Nama Petugas Pelayanan
+                                    </label>
+                                    <input type="text" style={{width: "100%", border: "1px solid black", padding:10}} />
+                                </div>
+
+                                <div className="col-span-6 sm:col-span-6">
+                                    <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Persyaratan pelayanan mudah
                                     </label>
                                     {/* <Smiley setValue={setP1} /> */}
@@ -122,65 +141,153 @@ export default function Survey() {
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Prosedur/alur pelayanan mudah
                                     </label>
-                                    <Smiley setValue={setP2} />
+                                    {/* <Smiley setValue={setP2} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP2(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p2 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Jangka waktu pelayanan yang diterima sesuai dengan yang ditetapkan
                                     </label>
-                                    <Smiley setValue={setP3} />
+                                    {/* <Smiley setValue={setP3} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP3(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p3 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Biaya pelayanan sesuai yang ditetapkan
                                     </label>
-                                    <Smiley setValue={setP4} />
+                                    {/* <Smiley setValue={setP4} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP4(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p4 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Produk pelayanan yang diterima sesuai yang dijanjikan
                                     </label>
-                                    <Smiley setValue={setP5} />
+                                    {/* <Smiley setValue={setP5} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP5(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p5 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Sarana prasarana nyaman
                                     </label>
-                                    <Smiley setValue={setP6} />
+                                    {/* <Smiley setValue={setP6} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP6(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p6 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Petugas pelayanan merespon dengan baik
                                     </label>
-                                    <Smiley setValue={setP7} />
+                                    {/* <Smiley setValue={setP7} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP7(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p7 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Keberadaan fasilitas pengaduan mudah diketahui
                                     </label>
-                                    <Smiley setValue={setP8} />
+                                    {/* <Smiley setValue={setP8} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP8(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p8 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Tidak ada diskriminasi pelayanan
                                     </label>
-                                    <Smiley setValue={setP9} />
+                                    {/* <Smiley setValue={setP9} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP9(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p9 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Tidak ada pungutan liar (pungli) dalam pelayanan
                                     </label>
-                                    <Smiley setValue={setP10} />
+                                    {/* <Smiley setValue={setP10} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP10(val2+1);}}
+                                    />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p10 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
+
+                                
+
+                                <div className="col-span-6 sm:col-span-6">
+                                    <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
+                                        Saran terkait pelayanan secara keseluruhan (Opsional)
+                                    </label>
+                                    <textarea rows={5} cols={40} style={{width: "100%", border: "1px solid black", padding:10}}
+                                        placeholder="Isikan saran terkait pelayanan secara keseluruhan (Opsional)"
+                                        ref={refSaran}
+                                    />
+                                </div>
+
+
+
+
                                 <div className="col-span-6 sm:col-span-2 mt-2">
                                     <button disabled={isLoading} type="submit" className="inline-flex justify-center py-3 px-8 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         <div className="flex items-center justify-center" style={{ marginRight: 10, display: isLoading ? "flex" : "none" }} >
