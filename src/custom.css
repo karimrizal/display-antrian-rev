@@ -501,3 +501,12 @@ body .twitter svg {
   /* background-color: #60daaa; */
   min-height: calc(100vh - 1px );
 }
+
+.empty-icons {
+  display: flex !important;
+  pointer-events: none;
+}
+.filled-icons {
+  display: -webkit-inline-box !important;
+  pointer-events: none;
+}

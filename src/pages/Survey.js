@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import { useAlert } from 'react-alert';
 import { Link, useNavigate } from 'react-router-dom'
+import { Rating } from 'react-simple-star-rating';
 import { url_api_view } from '../components/constant';
 import Smiley from '../components/Smiley'
 
@@ -22,6 +23,23 @@ export default function Survey() {
     const [isLoading, setIsLoading] = useState(false);
     const alert = useAlert();
     const navigate = useNavigate();
+    const startFillArray = [
+        '#f14f45',
+        '#f14f45',
+        '#f18845',
+        '#f19745',
+        '#f1d045',
+        '#f1de45'
+    ];
+
+    const startTooltipArray = [
+        'Bad',
+        'Bad+',
+        'Average',
+        'Average+',
+        'Great',
+        'Great+',
+    ];
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,7 +47,7 @@ export default function Survey() {
         setShowErrorMessage(true);
         if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0) {
             setIsLoading(true);
-            const data = { 
+            const data = {
                 p1: p1,
                 p2: p2,
                 p3: p3,
@@ -42,7 +60,7 @@ export default function Survey() {
                 p10: p10,
             };
 
-            fetch(url_api_view+"/records/penilaian", {
+            fetch(url_api_view + "/records/penilaian", {
                 method: 'POST', // or 'PUT'
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +82,7 @@ export default function Survey() {
     }
 
     return (
-       
+
         <div className="full-height-min-10 bg-gradient-to-r from-gradient3/30 via-gradient2/80 to-gradient1/40 flex flex-col justify-center py-10">
             {/* <div className="relative sm:max-w-4xl sm:mx-auto"> */}
             <Link to="/" style={{ position: "absolute", top: 10, left: 10, display: "flex" }} className="custombutton"><ArrowLeftIcon className="text-black h-6 w-6" style={{ marginRight: 10 }} aria-hidden="true" /> Back</Link>
@@ -76,6 +94,7 @@ export default function Survey() {
                         <div className="font-sans text-gray-700 space-y-2 sm:leading-7 text-center antialiased">
                             <h1 id="title" className="text-3xl font-semibold">Survey Kepuasan Pelayanan</h1>
                             <p id="description" className="text-lg">BPS Provinsi Sulawesi Tenggara</p>
+                            
                         </div>
                         {/* Form */}
                         <form id="survey-form" onSubmit={handleSubmit}>
@@ -84,7 +103,16 @@ export default function Survey() {
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Persyaratan pelayanan mudah
                                     </label>
-                                    <Smiley setValue={setP1} />
+                                    {/* <Smiley setValue={setP1} /> */}
+                                    <Rating
+                                        fillColorArray={startFillArray}
+                                        iconsCount={6}
+                                        showTooltip
+                                        tooltipArray={startTooltipArray}
+                                        transition
+                                        onClick={(val, val2)=>{setP1(val2+1);}}
+                                    />
+                                    
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && p1 == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                     {/* <div className="mt-1 flex rounded-md">
                                         <input id="email" type="email" name="name" className="form-input block w-full h-10 px-4 mb-2 border border-gray-300 rounded-md sm:text-sm placeholder-gray-400" placeholder="Your email address" required />
