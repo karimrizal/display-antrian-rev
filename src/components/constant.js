@@ -6,3 +6,4 @@ export const url_upload = "https://sultradata.com/project/antrian-api/upload.php
 // export const url_camera_sound = "https://sultradata.com/project/antrian-api/camera-shutter-click.mp3";
 export const url_camera_sound = camera_sound;
 export const url_image = "https://sultradata.com/project/antrian-api/";
+export const url_image_onedata = "https://sultradata.com/project/onedataasn/storage/app/public/foto/";

@@ -5,8 +5,9 @@ import { useRef } from 'react';
 import { useAlert } from 'react-alert';
 import { Link, useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating';
-import { url_api_view } from '../components/constant';
-import Smiley from '../components/Smiley'
+import { url_api_view, url_image, url_image_onedata } from '../components/constant';
+import Smiley from '../components/Smiley';
+import AsyncSelect from 'react-select/async';
 
 export default function Survey() {
     const [p1, setP1] = useState(0);
@@ -19,6 +20,10 @@ export default function Survey() {
     const [p8, setP8] = useState(0);
     const [p9, setP9] = useState(0);
     const [p10, setP10] = useState(0);
+    const [id_pengunjung, setid_pengunjung] = useState(0);
+    const [niplama_petugas, setNiplamaPetugas] = useState(0);
+
+
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const alert = useAlert();
@@ -43,11 +48,60 @@ export default function Survey() {
 
     const refSaran = useRef(null);
 
+    const fetchQueue = async () => {
+        let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
+        const data = await fetch(url_api_view + `/records/queue?order=id,asc&filter=waktu_kunjungan,sw,${date}`);
+        const apiResponse = await data.json();
+        // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
+        const sortedData = apiResponse.records;
+        
+        let options = [];
+        for (let index = 0; index < sortedData.length; index++) {
+            const element = sortedData[index];
+            let temp = {
+                value: element["id"],
+                label: element["nama_pengunjung"],
+                image : url_image+element["foto_pengunjung_path"]
+            }
+            options.push(temp);
+        }
+        console.log("options", options);
+        return options;
+
+    }
+
+    const fetchPetugasPST = async () => {
+        let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
+        const data = await fetch(url_api_view + `/records/petugas_pst?order=nama,asc`);
+        const apiResponse = await data.json();
+        // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
+        const sortedData = apiResponse.records;
+        
+        let options = [];
+        for (let index = 0; index < sortedData.length; index++) {
+            const element = sortedData[index];
+            let temp = {
+                value: element["niplama"],
+                label: element["nama"],
+                image : url_image_onedata+element["image_path"]
+            }
+            options.push(temp);
+        }
+        console.log("options", options);
+        return options;
+
+    }
+
+
+    
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("handle submit");
         setShowErrorMessage(true);
-        if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0) {
+        if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0 
+            && id_pengunjung > 0 && niplama_petugas > 0) 
+        {
             setIsLoading(true);
             const data = {
                 p1: p1,
@@ -60,7 +114,9 @@ export default function Survey() {
                 p8: p8,
                 p9: p9,
                 p10: p10,
-                saran: refSaran.current.value
+                saran: refSaran.current.value,
+                id_pengunjung: id_pengunjung,
+                niplama_petugas: niplama_petugas
             };
 
             console.log("data", data);
@@ -108,14 +164,33 @@ export default function Survey() {
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Nama Pengunjung
                                     </label>
-                                    <input type="text" style={{width: "100%", border: "1px solid black", padding:10}} />
+                                    {/* <input type="text" style={{width: "100%", border: "1px solid black", padding:10}} /> */}
+                                    <AsyncSelect cacheOptions defaultOptions loadOptions={fetchQueue} 
+                                        formatOptionLabel={(data)=>(
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src={data.image} alt="data-image" width={100} />
+                                                <span style={{alignSelf: "center", marginLeft: 10}}>{data.label}</span>
+                                            </div>
+                                        )}
+                                        onChange={(data)=>{setid_pengunjung(data.value)}}
+                                    />
+                                    <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && id_pengunjung == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-6">
                                     <label id="email-label" htmlFor="email" className="block text-sm font-medium text-gray-600">
                                         Nama Petugas Pelayanan
                                     </label>
-                                    <input type="text" style={{width: "100%", border: "1px solid black", padding:10}} />
+                                    <AsyncSelect cacheOptions defaultOptions loadOptions={fetchPetugasPST} 
+                                        formatOptionLabel={(data)=>(
+                                            <div style={{display: "flex", flexDirection: "row"}}>
+                                                <img src={data.image} alt="data-image" width={100} />
+                                                <span style={{alignSelf: "center", marginLeft: 10}}>{data.label}</span>
+                                            </div>
+                                        )}
+                                        onChange={(data)=>{setNiplamaPetugas(data.value)}}
+                                    />
+                                    <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && niplama_petugas == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
 
                                 <div className="col-span-6 sm:col-span-6">
