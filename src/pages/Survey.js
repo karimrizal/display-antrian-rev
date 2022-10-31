@@ -174,6 +174,7 @@ export default function Survey() {
                                             </div>
                                         )}
                                         onChange={(data)=>{setid_pengunjung(data.value)}}
+                                        isSearchable={false}
                                     />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && id_pengunjung == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
@@ -190,6 +191,7 @@ export default function Survey() {
                                             </div>
                                         )}
                                         onChange={(data)=>{setNiplamaPetugas(data.value)}}
+                                        isSearchable={false}
                                     />
                                     <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && niplama_petugas == 0 ? "flex" : "none" }}>Isian tidak boleh kosong</p>
                                 </div>
