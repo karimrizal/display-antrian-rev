@@ -510,3 +510,7 @@ body .twitter svg {
   display: -webkit-inline-box !important;
   pointer-events: none;
 }
+
+.dashcam{
+  max-height: calc(100vh - 100px);
+}
