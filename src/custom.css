@@ -514,3 +514,7 @@ body .twitter svg {
 .dashcam{
   max-height: calc(100vh - 100px);
 }
+
+.dynamic-btn-height{
+  max-height: calc(100vh - 300px);
+}

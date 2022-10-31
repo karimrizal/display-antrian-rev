@@ -31,7 +31,7 @@ export default function Welcome() {
           </div> */}
         
         <div className="grid grid-cols-2 gap-4">
-          <div>
+          <div className="dynamic-btn-height">
             <Link to="/daftar" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-black bg-pst hover:bg-blue hover:text-white custombutton"
               style={{ display: "flex", alignItems: "center", flexDirection: "column", padding: "30px", backgroundColor: "#ffc500", height: "100%" }}
             >
@@ -43,11 +43,12 @@ export default function Welcome() {
               Ambil Antrean
             </Link>
           </div>
-          <div>
+          <div className="dynamic-btn-height">
             <Link to="/survey" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md text-base font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
                 style={{ display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", height: "100%" }}
             >
               <img className="w-auto"
+                style={{height: "100%"}}
                 src={smiley}
                 alt="logo"
               />
