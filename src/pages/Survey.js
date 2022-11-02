@@ -151,7 +151,7 @@ export default function Survey() {
                 .then((data) => {
                     console.log('Success:', data);
                     if(isGetReward()){
-                        alert.success(<div>Data berhasil tersimpan. <b>Mohon maaf</b> atas kekurangan pelayanan kami, silahkan <b>hubungi petugas PST</b> untuk mendapatkan <b>Reward</b> aduan pelayanan</div>);
+                        alert.success(<div><p>Data berhasil tersimpan. <b>Mohon maaf</b> atas kekurangan pelayanan kami, silahkan <b>hubungi petugas PST</b> untuk mendapatkan <b>Reward</b> aduan pelayanan.*</p> <p style={{fontSize: "11px", marginTop: "20px"}}><b>*Syarat dan ketentuan berlaku.</b></p></div>);
                     }else{
                         alert.success("Data berhasil tersimpan");
                     }
