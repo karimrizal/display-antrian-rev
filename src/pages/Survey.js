@@ -20,6 +20,7 @@ export default function Survey() {
     const [p8, setP8] = useState(0);
     const [p9, setP9] = useState(0);
     const [p10, setP10] = useState(0);
+    const [saran, setSaran] = useState("");
     const [id_pengunjung, setid_pengunjung] = useState(0);
     const [niplama_petugas, setNiplamaPetugas] = useState(0);
 
@@ -92,6 +93,24 @@ export default function Survey() {
 
     }
 
+    const isSaranError = () =>{
+        if ((p1 < 6 || p2 < 6 || p3 < 6 || p4 < 6 || p5 < 6 || p6 < 6 || p7 < 6 || p8 < 6 || p9 < 6 || p10 < 6) && saran=="" ) 
+        {
+            return true;
+        }
+        return false;
+
+    }
+
+    const isGetReward = () =>{
+        if (p1 < 4 || p2 < 4 || p3 < 4 || p4 < 4 || p5 < 4 || p4 < 4 || p7 < 4 || p8 < 4 || p9 < 4 || p10 < 4 ) 
+        {
+            return true;
+        }
+        return false;
+
+    }
+
 
     
 
@@ -100,7 +119,7 @@ export default function Survey() {
         console.log("handle submit");
         setShowErrorMessage(true);
         if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0 
-            && id_pengunjung > 0 && niplama_petugas > 0) 
+            && id_pengunjung > 0 && niplama_petugas > 0 && !isSaranError()) 
         {
             setIsLoading(true);
             const data = {
@@ -131,7 +150,11 @@ export default function Survey() {
                 .then((response) => response.json())
                 .then((data) => {
                     console.log('Success:', data);
-                    alert.success("Data berhasil tersimpan");
+                    if(isGetReward()){
+                        alert.success(<div>Data berhasil tersimpan. <b>Mohon maaf</b> atas kekurangan pelayanan kami, silahkan <b>hubungi petugas PST</b> untuk mendapatkan <b>Reward</b> aduan pelayanan</div>);
+                    }else{
+                        alert.success("Data berhasil tersimpan");
+                    }
                     setTimeout(() => { navigate("/"); }, 3000);
                 })
                 .catch((error) => {
@@ -360,7 +383,9 @@ export default function Survey() {
                                     <textarea rows={5} cols={40} style={{width: "100%", border: "1px solid black", padding:10}}
                                         placeholder="Isikan saran terkait pelayanan secara keseluruhan (Opsional)"
                                         ref={refSaran}
+                                        onChange={(e)=>{setSaran(e.target.value);}}
                                     />
+                                    <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && isSaranError() ? "flex" : "none" }}>Ada layanan &lt; 6, mohon isikan saran perbaikan</p>
                                 </div>
 
 
