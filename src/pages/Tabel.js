@@ -88,7 +88,8 @@ function Table() {
 
     async function textToSpeach(message) {
         const speach = new SpeechSynthesisUtterance(message);
-        speach.voice = await speechSynthesis.getVoices()[11];
+        // speach.voice = await speechSynthesis.getVoices()[11];
+        speach.voice = await speechSynthesis.getVoices().find(voz => voz.lang == "id-ID");
         speechSynthesis.speak(speach);
     }
 
