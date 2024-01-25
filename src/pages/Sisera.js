@@ -23,6 +23,7 @@ export default function Sisera() {
     const [id_pengunjung, setid_pengunjung] = useState(0);
     const [niplama_petugas, setNiplamaPetugas] = useState(0);
     const [isPhoneNumber, setIsPhoneNumber] = useState(false);
+    const [saran, setSaran] = useState("");
 
 
 
@@ -95,8 +96,14 @@ export default function Sisera() {
 
     }
 
+    const isSaranError = () =>{
+        if ((p1 < 6 || p2 < 6 || p3 < 6 || p4 < 6 || p5 < 6 || p6 < 6 || p7 < 6 || p8 < 6 || p9 < 6 || p10 < 6) && saran=="" ) 
+        {
+            return true;
+        }
+        return false;
 
-    
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -115,8 +122,10 @@ export default function Sisera() {
 
         console.log("isphone2", isPhoneNumber);
 
+        console.log("isSaranError()", isSaranError());
 
-        if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0 && tempPhone) 
+
+        if (p1 > 0 && p2 > 0 && p3 > 0 && p4 > 0 && p5 > 0 && p6 > 0 && p7 > 0 && p8 > 0 && p9 > 0 && p10 > 0 && tempPhone &&!isSaranError()) 
         {
             setIsLoading(true);
             const data = {
@@ -376,7 +385,9 @@ export default function Sisera() {
                                     <textarea rows={5} cols={40} style={{width: "100%", border: "1px solid black", padding:10}}
                                         placeholder="Isikan saran terkait pelayanan secara keseluruhan (Opsional)"
                                         ref={refSaran}
+                                        onChange={(e)=>{setSaran(e.target.value);}}
                                     />
+                                    <p className="block text-sm font-medium" style={{ color: "red", display: showErrorMessage && isSaranError() ? "flex" : "none" }}>Ada layanan &lt; 6, mohon isikan saran perbaikan</p>
                                 </div>
 
 
