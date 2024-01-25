@@ -12,6 +12,7 @@ import Survey from './pages/Survey';
 import Tabel from './pages/Tabel';
 import { AnimatePresence, motion } from "framer-motion";
 import Motiondiv from './components/Motiondiv';
+import Sisera from './pages/Sisera';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/daftar" element={<Daftar />} />
             <Route path="/tabel" element={<Tabel />} />
             <Route path="/survey" element={<Motiondiv> <Survey /> </Motiondiv>} />
+            <Route path="/sisera" element={<Motiondiv> <Sisera /> </Motiondiv>} />
 
           </Routes>
           {/* <Navbar/> */}
