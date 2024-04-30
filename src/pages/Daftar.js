@@ -128,7 +128,7 @@ function Daftar() {
                     }}
                 />,
                 <div style={{width: "100%", display: "grid", gridTemplateColumns: "1fr"}}>
-                    <video  id="vid" autoPlay style={{ backgroundColor: "black", width: "100%", gridRowStart: 1, gridColumnStart: 1 }} className='dashcam' />
+                    <video  id="vid" autoPlay style={{ backgroundColor: "black", width: "100%", height: "100%", gridRowStart: 1, gridColumnStart: 1 }} className='dashcam' />
                     {/* <button id="getUserMediaButton" onClick={onGetUserMediaButtonClick}  >Get User Media</button> */}
                     <div style={{width: "100%", height: "100%", gridRowStart: 1, gridColumnStart: 1, display: "flex", justifyContent: "center", alignItems: "center"}} 
                         // className="font-medium text-4xl text-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
