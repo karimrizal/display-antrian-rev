@@ -72,23 +72,23 @@ export default function Survey() {
     }
 
     const fetchPetugasPST = async () => {
-        // let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
-        // const data = await fetch(url_api_view + `/records/petugas_pst?order=nama,asc`);
-        // const apiResponse = await data.json();
-        // // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
-        // const sortedData = apiResponse.records;
+        let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
+        const data = await fetch(url_api_view + `/records/petugas_pst?order=nama,asc`);
+        const apiResponse = await data.json();
+        // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
+        const sortedData = apiResponse.records;
         
-        // let options = [];
-        // for (let index = 0; index < sortedData.length; index++) {
-        //     const element = sortedData[index];
-        //     let temp = {
-        //         value: element["id"],
-        //         label: element["nama"],
-        //         image : url_image_onedata+element["image_path"]
-        //     }
-        //     options.push(temp);
-        // }
-        // console.log("options", options);
+        let options = [];
+        for (let index = 0; index < sortedData.length; index++) {
+            const element = sortedData[index];
+            let temp = {
+                value: element["id"],
+                label: element["nama"],
+                image : url_image_onedata+element["image_path"]
+            }
+            options.push(temp);
+        }
+        console.log("options", options);
         // return options;
 
         const d = new Date();
@@ -101,7 +101,7 @@ export default function Survey() {
         console.log("apiResponse2", apiResponse2);
         console.log("sortedData2", sortedData2);
 
-        let options = [];
+        let options2 = [];
         let temp = {
             value: sortedData2["petugas1"],
             label: sortedData2["petugas1_nama"],
@@ -127,12 +127,17 @@ export default function Survey() {
         };
 
 
-        options.push(temp);
-        options.push(temp2);
-        options.push(temp3);
-        options.push(temp4);
+        options2.push(temp);
+        options2.push(temp2);
+        options2.push(temp3);
+        options2.push(temp4);
 
-        console.log("options", options);
+        console.log("options2", options2);
+
+        if(options2.length>0){
+            return options2;
+
+        }
         return options;
 
 
