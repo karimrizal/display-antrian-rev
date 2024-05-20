@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { useAlert } from 'react-alert';
 import { Link, useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating';
-import { url_api_view, url_image, url_image_onedata } from '../components/constant';
+import { url_api, url_api_view, url_image, url_image_onedata } from '../components/constant';
 import Smiley from '../components/Smiley';
 import AsyncSelect from 'react-select/async';
 
@@ -72,24 +72,70 @@ export default function Survey() {
     }
 
     const fetchPetugasPST = async () => {
-        let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
-        const data = await fetch(url_api_view + `/records/petugas_pst?order=nama,asc`);
-        const apiResponse = await data.json();
-        // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
-        const sortedData = apiResponse.records;
+        // let date = new Date().getFullYear() + '-' + ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' + ("0" + new Date().getDate()).slice(-2);
+        // const data = await fetch(url_api_view + `/records/petugas_pst?order=nama,asc`);
+        // const apiResponse = await data.json();
+        // // const sortedData = apiResponse.sort((a,b) => b.price_change_percentage_24h - a.price_change_percentage_24h)
+        // const sortedData = apiResponse.records;
         
+        // let options = [];
+        // for (let index = 0; index < sortedData.length; index++) {
+        //     const element = sortedData[index];
+        //     let temp = {
+        //         value: element["id"],
+        //         label: element["nama"],
+        //         image : url_image_onedata+element["image_path"]
+        //     }
+        //     options.push(temp);
+        // }
+        // console.log("options", options);
+        // return options;
+
+        const d = new Date();
+        let sesi = d.getHours()>12? 2:1;
+
+        const data2 = await fetch(url_api_view + `/records/jadwal_piket_view?filter=sesi,eq,${sesi}&filter=tanggal,eq,${d.toISOString().slice(0, 10)}&order=date_created,desc`);
+        const apiResponse2 = await data2.json();
+        const sortedData2 = apiResponse2.records[0];
+
+        console.log("apiResponse2", apiResponse2);
+        console.log("sortedData2", sortedData2);
+
         let options = [];
-        for (let index = 0; index < sortedData.length; index++) {
-            const element = sortedData[index];
-            let temp = {
-                value: element["id"],
-                label: element["nama"],
-                image : url_image_onedata+element["image_path"]
-            }
-            options.push(temp);
-        }
+        let temp = {
+            value: sortedData2["petugas1"],
+            label: sortedData2["petugas1_nama"],
+            image : url_image_onedata + sortedData2["petugas1_image_path"]
+        };
+
+        let temp2 = {
+            value: sortedData2["petugas2"],
+            label: sortedData2["petugas2_nama"],
+            image : url_image_onedata + sortedData2["petugas2_image_path"]
+        };
+
+        let temp3 = {
+            value: sortedData2["petugas3"],
+            label: sortedData2["petugas3_nama"],
+            image : url_image_onedata + sortedData2["petugas3_image_path"]
+        };
+
+        let temp4 = {
+            value: sortedData2["petugas4"],
+            label: sortedData2["petugas4_nama"],
+            image : url_image_onedata + sortedData2["petugas4_image_path"]
+        };
+
+
+        options.push(temp);
+        options.push(temp2);
+        options.push(temp3);
+        options.push(temp4);
+
         console.log("options", options);
         return options;
+
+
 
     }
 
