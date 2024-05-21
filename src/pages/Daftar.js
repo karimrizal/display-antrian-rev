@@ -23,6 +23,8 @@ const onGetUserMediaButtonClick = () => {
         .catch((error) => console.error(error));
 }
 
+
+
 const onGrabFrameButtonClick = () => {
     imageCapture.grabFrame()
         .then((imageBitmap) => {
@@ -105,6 +107,17 @@ function Daftar() {
     const [isLoading, setIsLoading] = useState(false);
     const cdref = useRef(null);
     const [showCd, setShowCd] = useState(false);
+    const [radio, setRadio] = useState(null);
+
+    const handleChange = e => {
+        console.log("e", e.target.value);
+        setRadio(e.target.value);
+        // const { name, value } = e.target;
+    
+        // this.setState({
+        //   [name]: value
+        // });
+    };
 
 
 
@@ -142,15 +155,32 @@ function Daftar() {
                 <canvas id="grabFrameCanvas" />
                 <button id="grabFrameButton" onClick={onGrabFrameButtonClick}>Grab Frame</button>
             </div> */}
-                <div style={{ display: "flex", alignContent: "flex-end", justifyContent: "space-between", alignSelf: "center", marginTop: 10, marginBottom: 10 }} >
+                <div style={{ display: "flex", flexDirection:"column", alignContent: "flex-end", justifyContent: "space-between", alignSelf: "center", marginTop: 10, marginBottom: 10 }} >
                     <canvas id="takePhotoCanvas" style={{ display: "none" }} />
                     {/* <Link to="/" >
                         <button disabled={isLoading} className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst" >
                             <ArrowLeftIcon className="text-white h-6 w-6 hover:bg-yellow hover:text-pst" style={{ marginRight: 10 }} aria-hidden="true" />Batal Antri
                         </button>
                     </Link> */}
+                    <div style={{display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "space-between", alignSelf: "center", marginTop: 10, marginBottom: 10}}>
+                        <p>Silahkan pilih layanan {radio}</p>
+                        <div className="radio-toolbar">
+                            <input type="radio" id="radioApple" name="radioFruit" value="1" onChange={handleChange}/>
+                            <label htmlFor="radioApple">Pelayanan Perpustakaan</label>
+
+                            <input type="radio" id="radioBanana" name="radioFruit" value="2" onChange={handleChange}/>
+                            <label htmlFor="radioBanana">Pelayanan Konsultasi</label>
+
+                            <input type="radio" id="radioOrange" name="radioFruit" value="3" onChange={handleChange}/>
+                            <label htmlFor="radioOrange">Penjualan Produk Statistik</label>
+
+                            <input type="radio" id="radioMango" name="radioFruit" value="4" onChange={handleChange}/>
+                            <label htmlFor="radioMango">Pelayanan Rekomendasi</label> 
+                        </div>
+
+                    </div>
                     <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true) }}
-                        disabled={isLoading}
+                        disabled={isLoading||radio==null}
                         className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst">
                         <div className="flex items-center justify-center" style={{ marginRight: 10, display: isLoading?"flex":"none" }} >
                             <div className="w-5 h-5 border-b-2 border-gray-900 rounded-full animate-spin"></div>
