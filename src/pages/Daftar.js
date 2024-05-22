@@ -7,7 +7,7 @@ import Countdown from 'react-countdown';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Webcam from 'react-webcam';
 import camera from '../components/camera'
-import { url_camera_sound, url_image, url_upload } from '../components/constant';
+import { url_api_view, url_camera_sound, url_image, url_upload } from '../components/constant';
 import "../custom.css"
 
 let imageCapture;
@@ -34,7 +34,7 @@ const onGrabFrameButtonClick = () => {
         .catch((error) => console.error(error));
 }
 
-const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
+const onTakePhotoButtonClick = async (alert, navigate, setIsLoading, radio) => {
     imageCapture.takePhoto()
         .then((blob) => {
             let imageBitmap = createImageBitmap(blob);
@@ -60,6 +60,27 @@ const onTakePhotoButtonClick = (alert, navigate, setIsLoading) => {
                         <p><span style={{color: "red"}}>{result.split(",")[0]}</span> berhasil terdaftar, silahkan menunggu panggilan</p>
                     </div>);
                     setTimeout(() => { navigate("/"); }, 3000);
+
+                    let arrResult = result.split(",");
+                    console.log("arrResult", arrResult);
+                    // arrResult[2];
+
+                    fetch(url_api_view + `/records/queue/${arrResult[2]}`, {
+                        method: 'PUT', // or 'PUT'
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({"jenis_layanan": radio}),
+                    })
+                    .then((response) => response.json())
+                    .then((data) => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+
+                    
 
                 })
                 .catch((error) => {
@@ -137,7 +158,7 @@ function Daftar() {
                         console.log("Complete cd");
                         // console.log("wow");
                         // alert.show("WOW"); 
-                        onTakePhotoButtonClick(alert, navigate, setIsLoading); setShowCd(false);
+                        onTakePhotoButtonClick(alert, navigate, setIsLoading, radio); setShowCd(false);
                     }}
                 />,
                 <div style={{width: "100%", display: "grid", gridTemplateColumns: "1fr"}}>
@@ -163,7 +184,7 @@ function Daftar() {
                         </button>
                     </Link> */}
                     <div style={{display: "flex", flexDirection:"column", alignItems: "center", justifyContent: "space-between", alignSelf: "center", marginTop: 10, marginBottom: 10}}>
-                        <p>Silahkan pilih layanan {radio}</p>
+                        <p>Silahkan pilih layanan :</p>
                         <div className="radio-toolbar">
                             <input type="radio" id="radioApple" name="radioFruit" value="1" onChange={handleChange}/>
                             <label htmlFor="radioApple">Pelayanan Perpustakaan</label>
@@ -179,7 +200,7 @@ function Daftar() {
                         </div>
 
                     </div>
-                    <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true) }}
+                    <button id="takePhotoButton" onClick={() => { cdref.current.start(); setIsLoading(true); setShowCd(true); }}
                         disabled={isLoading||radio==null}
                         className="flex items-center justify-center px-2 py-2 rounded-xl shadow-sm text-base font-medium text-white bg-blue hover:bg-yellow hover:text-pst">
                         <div className="flex items-center justify-center" style={{ marginRight: 10, display: isLoading?"flex":"none" }} >
