@@ -3,6 +3,7 @@ import line_up from '../assets/img/line-up-x.png';
 import surveyor from '../assets/img/survey.png';
 import smiley from '../assets/img/smiley_new.png';
 import logo from '../assets/img/logo.png';
+import ppid from '../assets/img/tamu-ppid.png';
 import ryan from '../assets/img/ryan.jpg';
 import rizal from '../assets/img/rizal.jpg';
 import { Link } from "react-router-dom";
@@ -33,12 +34,28 @@ export default function Welcome() {
 
         {/* CONTAINER SURVEI KEPUASAN */}
         <div class="grid grid-cols-2 gap-0" style={{minHeight: "auto"}}>
-          <div>
-            <p className="mt-6 text-2xl font-semibold text-gray-800">Sudah selesai menerima layanan?</p>
-            <h1 className="text-5xl font-medium mt-0 sm:text-6xl text-pst">Bantu Kami
-              <span className="font-bold text-pst leading-tight "> Jadi Lebih Baik!😊👉</span> 
-            </h1>
-          </div>
+          <div className="flex flex-col items-center">
+  <p className="mt-6 text-2xl font-semibold text-gray-800">
+    Sudah selesai menerima layanan?
+  </p>
+  <h1 className="text-5xl font-medium mt-0 sm:text-6xl text-pst text-center">
+    Bantu Kami
+    <span className="font-bold text-pst leading-tight"> Jadi Lebih Baik!😊👉</span>
+  </h1>
+
+  <a
+    href="https://webapps.bps.go.id/sultra/ppid-form/"
+    className="flex flex-col items-center justify-center"
+  >
+
+    <img
+      src={ppid}
+      alt="logo"
+      className="object-contain py-5 mx-auto max-w-xs"
+    />
+  </a>
+</div>
+
           <div>
             <Link to="/survey" className="text-3xl items-center justify-center px-4 py-4 rounded-xl shadow-md font-medium text-white bg-pst hover:bg-blue hover:text-white custombutton"
               style={{ display: "flex", alignItems: "center", flexDirection: "column", padding: "40px", marginBottom: 40 }}>
